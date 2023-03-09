@@ -6,6 +6,7 @@ class Form extends React.Component {
     const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3,
       cardImage, cardRare, cardTrunfo, hasTrunfo, isSaveButtonDisabled,
       onInputChange, onSaveButtonClick } = this.props;
+    console.log(hasTrunfo);
     return (
       <>
         <label>
@@ -14,7 +15,7 @@ class Form extends React.Component {
             data-testid="name-input"
             type="text"
             value={ cardName }
-            onChange={ onInputChange }
+            onClick={ onInputChange }
           />
         </label>
         <br />
