@@ -2,6 +2,9 @@ import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
 
+const MAXPOINT = 90;
+const MAXSUM = 210;
+
 class App extends React.Component {
   constructor() {
     super();
@@ -16,14 +19,12 @@ class App extends React.Component {
       cardRare: 'normal',
       cardTrunfo: false,
       hasTrunfo: false,
-      isSaveButtonDisabled: true,
     };
 
     this.onInputChange = this.onInputChange.bind(this);
   }
 
   onInputChange = ({ target }) => {
-    console.log(target.value);
     this.setState({
       [target.name]: target.value,
     });
@@ -31,7 +32,18 @@ class App extends React.Component {
 
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3,
-      cardImage, cardRare, cardTrunfo, hasTrunfo, isSaveButtonDisabled } = this.state;
+      cardImage, cardRare, cardTrunfo, hasTrunfo } = this.state;
+
+    const isFormValid = cardName.length > 0
+      && cardDescription.length > 0
+      && cardImage.length > 0
+      && cardAttr1.length > 0
+      && cardAttr2.length > 0
+      && cardAttr3.length > 0
+      && (cardAttr1 <= MAXPOINT && cardAttr1 >= 0)
+      && (cardAttr2 <= MAXPOINT && cardAttr2 >= 0)
+      && (cardAttr3 <= MAXPOINT && cardAttr3 >= 0)
+      && Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3) <= MAXSUM;
     return (
       <>
         <div>
@@ -47,7 +59,7 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
           hasTrunfo={ hasTrunfo }
-          isSaveButtonDisabled={ isSaveButtonDisabled }
+          isSaveButtonDisabled={ !isFormValid }
           onInputChange={ this.onInputChange }
         />
         <Card
