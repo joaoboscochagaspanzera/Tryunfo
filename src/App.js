@@ -62,7 +62,7 @@ class App extends React.Component {
 
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3,
-      cardImage, cardRare, cardTrunfo, hasTrunfo } = this.state;
+      cardImage, cardRare, cardTrunfo, hasTrunfo, deck } = this.state;
 
     const isFormValid = cardName.length > 0
       && cardDescription.length > 0
@@ -103,6 +103,23 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
         />
+        <section>
+          <h1>Minha Coleção</h1>
+          {
+            deck.map((card) => (
+              <Card
+                key={ card.cardName }
+                cardName={ card.cardName }
+                cardDescription={ card.cardDescription }
+                cardAttr1={ card.cardAttr1 }
+                cardAttr2={ card.cardAttr2 }
+                cardAttr3={ card.cardAttr3 }
+                cardImage={ card.cardImage }
+                cardRare={ card.cardRare }
+                cardTrunfo={ card.cardTrunfo }
+              />))
+          }
+        </section>
       </>
     );
   }
