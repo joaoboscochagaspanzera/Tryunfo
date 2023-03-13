@@ -91,13 +91,13 @@ class Form extends React.Component {
         <br />
         <label>
           Super Trunfo:
-          <input
+          { hasTrunfo ? <p>Você já tem um Super Trunfo em seu baralho </p> : <input
             data-testid="trunfo-input"
             type="checkbox"
             name="cardTrunfo"
             checked={ cardTrunfo }
             onChange={ onInputChange }
-          />
+          /> }
         </label>
         <br />
         <input
